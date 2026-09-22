@@ -10,6 +10,7 @@
 /[Uu]ser[Ss]ettings/
 /[Mm]emoryCaptures/
 /ProjectSettings/SceneTemplateSettings.json
+/fmod_editor.log
 
 *.csproj
 *.sln
