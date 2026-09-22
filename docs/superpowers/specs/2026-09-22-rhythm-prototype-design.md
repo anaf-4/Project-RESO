@@ -25,7 +25,7 @@ FMOD(Perfect_Run) 재생
       → NoteView: 스폰~히트 시각 사이를 시간 보간으로 낙하 (프레임 드랍에도 곡 시간 기준이라 밀리지 않음)
       → InputHandler(D/F/J/K): 키 입력 시각 = 같은 SongConductor 시계 기준
       → JudgmentSystem: 레인 내 미판정 노트 중 가장 이른 것과 시간차 계산 → 등급 분류 → 제거
-      → JudgmentUI: 등급 스프라이트 표시, 콤보/정확도 갱신
+      → JudgmentUI: 등급 스프라이트 표시, 콤보 갱신 (정확도%는 범위 밖 — 구현 시 드롭됨, 필요하면 2단계에서 추가)
 ```
 
 ## 컴포넌트
@@ -39,7 +39,7 @@ FMOD(Perfect_Run) 재생
 | `JudgmentClassifier` | 순수 함수: 시간차(ms) → 등급. MonoBehaviour 아님, 독립 테스트 가능 | 없음 |
 | `JudgmentSystem` | 레인별 미판정 노트 큐에서 최선참 노트 판정, 결과 이벤트 발행 | `JudgmentClassifier`, `NoteSpawner` |
 | `InputHandler` | Unity Input System으로 D/F/J/K 키다운 감지 → `JudgmentSystem.TryHit(lane, songTime)` | Input System |
-| `JudgmentUI` | 판정 이벤트 구독 → 슬라이스된 PERFECT/GREAT/... 스프라이트 표시, 콤보(TMP 텍스트) 갱신 | 판정 이벤트 |
+| `JudgmentUI` | 판정 이벤트 구독 → 슬라이스된 PERFECT/GREAT/... 스프라이트 표시, 콤보(`UnityEngine.UI.Text`) 갱신 | 판정 이벤트 |
 
 ## 판정 기준 (기획서 5.1 그대로)
 
@@ -61,7 +61,7 @@ FMOD(Perfect_Run) 재생
 | 노트 토큰 4종 | 좌상단 다이아몬드 4색(보라/파랑/화이트/레드) | 레인 0~3 매핑 |
 | 레인 트랙 | 파란 세로 바(rail) 1종 | 4레인 배경 반복 배치 |
 
-**범위 밖(스킵)**: 콤보 숫자 스프라이트, 프로필/배경 연출, 랭크 배지, 메뉴 버튼. 콤보 카운트는 TMP 텍스트로 대체.
+**범위 밖(스킵)**: 콤보 숫자 스프라이트, 프로필/배경 연출, 랭크 배지, 메뉴 버튼. 콤보 카운트는 TMP Essentials 임포트를 피하려고 `UnityEngine.UI.Text`로 대체 (구현 계획의 Global Constraints에서 확정).
 
 ## 채보·입력 세부값
 

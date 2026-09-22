@@ -407,7 +407,7 @@ git add Assets/Scripts/Rhythm/SongConductor.cs
 git commit -m "feat: add SongConductor for FMOD timeline sync"
 ```
 
-(Play Mode 검증은 Task 8에서 씬에 배치된 후 Task 14 통합 플레이테스트 때 함께 확인한다.)
+(Play Mode 검증은 Task 11에서 씬에 배치된 후 Task 12 통합 플레이테스트 때 함께 확인한다.)
 
 ---
 
@@ -470,7 +470,7 @@ git commit -m "feat: import and slice UI sprite sheet"
 
 **Interfaces:**
 - Consumes: 없음
-- Produces: `static class NoteMotion { static Vector3 ComputePosition(float spawnTime, float hitTime, float now, Vector3 spawnPosition, Vector3 judgmentPosition); }`, `class NoteView : MonoBehaviour { int Lane { get; } float HitTime { get; } bool IsResolved { get; } void Initialize(int lane, float hitTime, float spawnTime, Vector3 spawnPosition, Vector3 judgmentPosition, SongConductor conductor, Sprite sprite); void Resolve(); }` — Task 7(NoteSpawner)이 `Initialize`를, Task 9(JudgmentSystem)가 `Lane`/`HitTime`/`Resolve()`를 사용한다.
+- Produces: `static class NoteMotion { static Vector3 ComputePosition(float spawnTime, float hitTime, float now, Vector3 spawnPosition, Vector3 judgmentPosition); }`, `class NoteView : MonoBehaviour { int Lane { get; } float HitTime { get; } bool IsResolved { get; } void Initialize(int lane, float hitTime, float spawnTime, Vector3 spawnPosition, Vector3 judgmentPosition, SongConductor conductor, Sprite sprite); void Resolve(); }` — Task 8(NoteSpawner)이 `Initialize`를, Task 7(JudgmentSystem)이 `Lane`/`HitTime`/`Resolve()`를 사용한다.
 
 - [ ] **Step 1: 실패하는 테스트 작성**
 
@@ -831,7 +831,7 @@ git add Assets/Scripts/Rhythm/NoteSpawner.cs
 git commit -m "feat: add NoteSpawner"
 ```
 
-(Play Mode 검증은 씬 배치 후 Task 14에서.)
+(Play Mode 검증은 씬 배치 후 Task 12에서.)
 
 ---
 
