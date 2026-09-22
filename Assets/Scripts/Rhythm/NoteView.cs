@@ -39,7 +39,14 @@ public class NoteView : MonoBehaviour
     public void Resolve()
     {
         IsResolved = true;
-        Destroy(gameObject);
+        if (Application.isPlaying)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
     }
 
     private void Update()

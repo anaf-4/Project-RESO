@@ -1,17 +1,32 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
 public class JudgmentSystemTests
 {
-    private static JudgmentSystem CreateSystem()
+    private readonly List<GameObject> spawned = new List<GameObject>();
+
+    [TearDown]
+    public void TearDown()
+    {
+        foreach (GameObject go in spawned)
+        {
+            if (go != null) Object.DestroyImmediate(go);
+        }
+        spawned.Clear();
+    }
+
+    private JudgmentSystem CreateSystem()
     {
         var go = new GameObject("JudgmentSystem");
+        spawned.Add(go);
         return go.AddComponent<JudgmentSystem>();
     }
 
-    private static NoteView CreateNote(int lane, float hitTime)
+    private NoteView CreateNote(int lane, float hitTime)
     {
         var go = new GameObject("NoteView");
+        spawned.Add(go);
         var note = go.AddComponent<NoteView>();
         note.Initialize(lane, hitTime, hitTime - 2f, Vector3.zero, Vector3.zero, null, null);
         return note;

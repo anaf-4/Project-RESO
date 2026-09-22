@@ -2,9 +2,11 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class SongConductor : MonoBehaviour
 {
     [SerializeField] private string eventPath = "event:/Perfect_Run";
+    [SerializeField] private float offsetMs = 0f;
 
     private EventInstance instance;
 
@@ -23,7 +25,7 @@ public class SongConductor : MonoBehaviour
     {
         if (!IsPlaying) return;
         instance.getTimelinePosition(out int positionMs);
-        SongTimeSeconds = positionMs / 1000f;
+        SongTimeSeconds = (positionMs - offsetMs) / 1000f;
     }
 
     private void OnDestroy()
