@@ -13,6 +13,7 @@ public class SongConductor : MonoBehaviour
 
     public void Play()
     {
+        if (IsPlaying) return;
         instance = RuntimeManager.CreateInstance(eventPath);
         instance.start();
         IsPlaying = true;
