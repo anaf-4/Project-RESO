@@ -17,6 +17,7 @@ public class NoteSpawner : MonoBehaviour
     private void Awake()
     {
         chart = ChartLoader.LoadFromResources(chartResourcePath);
+        conductor.Play();
     }
 
     private void Update()
